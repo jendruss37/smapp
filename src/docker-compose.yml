@@ -1,0 +1,47 @@
+services:
+  front:
+    build:
+      context: .
+      dockerfile: Front/Dockerfile
+    ports:
+      - "5005:80"
+  peopleapi:
+    depends_on:
+      - peopledb
+    build:
+      context: .
+      dockerfile: PeopleApi/Dockerfile
+    ports:
+      - "5001:80"
+  postapi:
+    depends_on:
+      - postdb
+    build:
+      context: .
+      dockerfile: PostApi/Dockerfile
+    ports:
+      - "5002:80"
+  identityapi:
+    build:
+      context: .
+      dockerfile: IdentityApi/Dockerfile
+    ports:
+      - "5003:80"
+  postdb:
+    build: 
+     context: .
+     dockerfile: PostDb/Dockerfile
+    ports:
+        - 1433:1433
+  peopledb:
+    build: 
+     context: .
+     dockerfile: PeopleDb/Dockerfile
+    ports:
+        - 1434:1433
+  identitydb:
+    build: 
+     context: .
+     dockerfile: IdentityDb/Dockerfile
+    ports:
+        - 1435:1433

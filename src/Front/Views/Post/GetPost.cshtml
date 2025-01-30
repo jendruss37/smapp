@@ -1,0 +1,14 @@
+﻿@model Front.Models.PostModel
+
+@{
+    ViewData["Title"] = "Post Details";
+}
+
+<h1>Post Details</h1>
+
+<div>
+    <h3>Post #@Model.Id</h3>
+    <p><strong>Content:</strong> @Model.Content</p>
+    <p><strong>User ID:</strong> @Model.UserId</p>
+    <p><strong>Created At:</strong> @Model.CreatedAt</p>
+</div>
