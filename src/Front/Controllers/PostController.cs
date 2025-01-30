@@ -9,10 +9,10 @@ namespace Front.Controllers
     {
         private readonly string postApiUri = "http://postapi:80/api/Post";
 
-        public async Task<IActionResult> GetPostsFromUser(int userId)
+        public async Task<IActionResult> GetPost()
         {
-            var response = await postApiUri.AppendPathSegment("getfromuser").SetQueryParam("userId", userId).GetJsonAsync<List<PostViewModel>>();
-            return View(response);
+            var response = await postApiUri.AppendPathSegment("getfromuser").SetQueryParam("userId", 1).GetJsonAsync<List<PostViewModel>>();
+            return View(response.FirstOrDefault());
         }
     }
 }

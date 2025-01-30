@@ -27,15 +27,17 @@ namespace IdentityApi.Controllers
             }
             return Ok(result);
         }
-        [HttpPost("authenticate")]
+
+        [HttpPut("authenticate")]
+        [Consumes("application/json")]
         public async Task<IActionResult> Authenticate([FromBody] CredentialsDto credentials)
         {
             var result = await _identityService.AuthenticateUser(credentials);
             if (result != AuthenticationResult.Success)
             {
-                return BadRequest(result);
+                return BadRequest(result.ToString());
             }
-            return Ok(result);
+            return Ok(result.ToString());
         }
         [HttpDelete("delete")]
         public async Task<IActionResult> Delete([FromQuery] int userId)
