@@ -74,7 +74,7 @@ namespace IdentityApi.Services
 
         private async Task RegisterUserInfo(NewUserDto newUserDto)
         {
-            var response = await "http://peopleapi:80/api/People/new".PostJsonAsync(newUserDto);
+            var response = await "http://people_api:80/api/People/new".PostJsonAsync(newUserDto);
             if (response.StatusCode != 200)
             {
                 throw new Exception(response.ResponseMessage.ToString());
@@ -82,7 +82,7 @@ namespace IdentityApi.Services
         }
         private async Task DeleteUserInfo(int id)
         {
-            var response = await $"http://peopleapi:80/api/People/delete?loginId={id}".DeleteAsync();
+            var response = await $"http://people_api:80/api/People/delete?loginId={id}".DeleteAsync();
             if (response.StatusCode != 200)
             {
                 throw new Exception(response.ResponseMessage.ToString());

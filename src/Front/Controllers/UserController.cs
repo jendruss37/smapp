@@ -8,7 +8,7 @@ namespace Front.Controllers
     {
         public async Task<IActionResult> GetUser()
         {
-            var apiUrl = $"http://peopleapi:80/api/People/get?id=1";
+            var apiUrl = $"http://people_api:80/api/People/get?id=1";
             var result = await apiUrl.GetJsonAsync<UserModel>();
             return View(result);
         }

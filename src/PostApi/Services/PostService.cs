@@ -37,7 +37,7 @@ namespace PostApi.Services
 
         public async Task<List<PostViewModel>> GetPostsFromFollowedUsers(int userId)
         {
-            var followedUsersIds = await $"http://peopleapi:80/api/People/followedids?userId={userId}".GetJsonAsync<List<int>>();
+            var followedUsersIds = await $"http://people_api:80/api/People/followedids?userId={userId}".GetJsonAsync<List<int>>();
             var posts = await _dbContext.Posts.Where(p => followedUsersIds.Contains(p.UserId)).ToListAsync();
             var postViewModelList = await ConvertPostsToPostViewModels(posts);
             return postViewModelList;
@@ -63,7 +63,7 @@ namespace PostApi.Services
         private async Task<List<PostViewModel>> ConvertPostsToPostViewModels(List<Post> posts)
         {
             var userIds = posts.Select(p => p.UserId).ToList();
-            var userNamesDict = await "http://peopleapi:80/api/People/usernames".PostJsonAsync(userIds).ReceiveJson<Dictionary<int, string>>();
+            var userNamesDict = await "http://people_api:80/api/People/usernames".PostJsonAsync(userIds).ReceiveJson<Dictionary<int, string>>();
             var result = new List<PostViewModel>();
 
             foreach (var post in posts)
